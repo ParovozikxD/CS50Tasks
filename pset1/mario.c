@@ -3,8 +3,6 @@
 
 int main()
 {
-	
-
 	int heigth;
 
 	//Are the input parametrs correct?
