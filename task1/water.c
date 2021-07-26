@@ -1,6 +1,26 @@
-#include <stdio>
+#include <stdio.h>
+#include <stdbool.h>
 
 int main()
 {
-	printf("helloworld");
+	int minutes;
+	
+	//While corrected data wasn't input ==> continuous loop
+	while (true)
+	{
+	
+		printf("How many minutes (whole ones) did you take a shower?\n");
+		
+		scanf("%i", &minutes);
+		
+		//Checking on correct input data
+		if (minutes < 0) 		
+			printf("Incorrect data. Try again\n");
+
+		else
+			break;
+	}
+		
+	//Output bottles count			
+	printf("You have used up: %i bottles\n",minutes*12);	
 }
