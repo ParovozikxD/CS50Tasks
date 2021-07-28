@@ -35,12 +35,14 @@ int main(int argc, char* argv[])
 		{
 			CipherText[i] = ((int)PlainText[i] - 65 + key) % AplhabetSize + 65;
 		}
+		
 		//For downcase
 		else if (islower(PlainText[i]))
 		{
 			CipherText[i] = ((int)PlainText[i] - 97 + key) % AplhabetSize + 97;
 		}
 
+		//For other symbols
 		else 
 		{
 			CipherText[i] = PlainText[i];

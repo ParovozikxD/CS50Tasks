@@ -56,6 +56,7 @@ int main()
 				}
 			}
 
+			//For other symbols
 			else 
 			{
 				PlainText[i][j] = CipherText[j];
