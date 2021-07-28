@@ -1,3 +1,8 @@
+/*Task 4
+	 The user enters name 
+	 Program should output the first letter in uppercase
+*/
+
 #include <stdio.h>
 #include <ctype.h> //for toupper
 
