@@ -1,3 +1,9 @@
+/*Task 1
+	 The user enters time in the shower
+	 Program should output number of spent bottles 
+	 (1 min = 12 bottles)
+*/
+
 #include <stdio.h>
 #include <stdbool.h>
 

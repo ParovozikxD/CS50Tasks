@@ -1,3 +1,8 @@
+/*Task 3
+	 The user enters size of change in dollar
+	 Program should output minimum number of coins to change
+*/
+
 #include <stdio.h>
 #include <stdbool.h>
 

@@ -1,17 +1,26 @@
+/*Task 2
+	 The user enters height of piramids
+	 Program should output piramids like in mario
+	 
+	 **
+	***
+   ****
+*/
+
 #include <stdio.h>
 #include <stdbool.h>
 
 int main()
 {
-	int heigth;
+	int height;
 
 	//Are the input parametrs correct?
 	while(true) 
 	{
 	  printf("Choose piramids heigth (1 - 23 range): ");
-	  scanf("%i",&heigth);
+	  scanf("%i",&height);
 
-	  if (heigth >= 1 && heigth <= 23)
+	  if (height >= 1 && height <= 23)
 	  {
 	  	break;
 	  }
@@ -22,10 +31,10 @@ int main()
 	printf("\n");
 
 	//First piramid
-	for (int i = 0; i < heigth; i++)
+	for (int i = 0; i < height; i++)
 	{
 		//Writes " "
-        for (int j = heigth-1; j > i ; j--)
+        for (int j = height-1; j > i ; j--)
 		{
 			printf(" ");
 		}
@@ -42,7 +51,7 @@ int main()
 	printf("\n");
 
 	//Second piramid
-	for (int i = 0; i < heigth; i++)
+	for (int i = 0; i < height; i++)
 	{
 	
 		//Writes #
@@ -57,11 +66,11 @@ int main()
 	printf("\n");
 
 	//Third piramid
-	for (int i = 0; i < heigth; i++)
+	for (int i = 0; i < height; i++)
 	{
 	
 		//Writes #
-		for (int j = heigth+1; j > i ; j--)
+		for (int j = height+1; j > i ; j--)
 		{
 			printf("#");
 		}
@@ -72,7 +81,7 @@ int main()
 	printf("\n");	
 
 	//Fourth piramid
-	for (int i = 0; i < heigth; i++)
+	for (int i = 0; i < height; i++)
 	{
 
 		//Writes " "
@@ -83,7 +92,7 @@ int main()
 
 		//Writes #
 		
-		for (int j = heigth+1; j > i ; j--)
+		for (int j = height+1; j > i ; j--)
 		{
 			printf("#");
 		}
