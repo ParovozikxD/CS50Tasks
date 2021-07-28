@@ -28,7 +28,6 @@ int main(int argc, char* argv[])
 
 	printf("Input your plaintext: ");
 	fgets(PlainText, Arrsize, stdin);
-
 	for (int i = 0,length = strlen(PlainText); i < length; i++)
 	{
 		//For uppcase
@@ -40,6 +39,11 @@ int main(int argc, char* argv[])
 		else if (islower(PlainText[i]))
 		{
 			CipherText[i] = ((int)PlainText[i] - 97 + key) % AplhabetSize + 97;
+		}
+
+		else 
+		{
+			CipherText[i] = PlainText[i];
 		}
 	}
 

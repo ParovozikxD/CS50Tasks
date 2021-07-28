@@ -43,7 +43,7 @@ int main()
 			}
 
 			//For downcase
-			if (islower(CipherText[j]))
+			else if (islower(CipherText[j]))
 			{
 				if ((int)CipherText[j] - key < 97)
 				{
@@ -52,10 +52,15 @@ int main()
 					
 				else
 				{
-
 					PlainText[i][j] = (int)CipherText[j] - key;
 				}
 			}
+
+			else 
+			{
+				PlainText[i][j] = CipherText[j];
+			}
+
 		}
 		puts(PlainText[i]);
 	}	
