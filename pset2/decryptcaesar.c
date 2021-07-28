@@ -23,22 +23,40 @@ int main()
 
 	printf("All possible dectyption options:\n");
 
-	for (int i = 0, key = 0; i < AplhabetSize; i++, key++)
+	for (int i = 0, key = 1; i < AplhabetSize; i++, key++)
 	{
 		for (int j = 0, length = strlen(CipherText); j < length; j++)
 		{
 			//For uppcase
 			if (isupper(CipherText[j]))
 			{
-				PlainText[i][j] = ((int)CipherText[j] + 65 - key) % AplhabetSize + 65;
+				if ((int)CipherText[j] - key < 65)
+				{
+					PlainText[i][j] = (int)CipherText[j] - key + AplhabetSize;
+				}
+					
+				else
+				{
+
+					PlainText[i][j] = (int)CipherText[j] - key;
+				}
 			}
+
 			//For downcase
 			if (islower(CipherText[j]))
 			{
-				PlainText[i][j] = ((int)CipherText[j] + 97 - key) % AplhabetSize + 97;
+				if ((int)CipherText[j] - key < 97)
+				{
+					PlainText[i][j] = (int)CipherText[j] - key + AplhabetSize;
+				}
+					
+				else
+				{
+
+					PlainText[i][j] = (int)CipherText[j] - key;
+				}
 			}
 		}
 		puts(PlainText[i]);
 	}	
-
 }
