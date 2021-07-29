@@ -15,7 +15,7 @@
 
 int main(int argc, char* argv[])
 {
-	//checking input data
+	//Checking input data
 	for (int i = 0, length = strlen(argv[1]); i < length; i++)
 	{
 		//Cheking for the presence of parametrs
@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 	printf("Input your plaintext: ");
 	fgets(PlainText, Arrsize, stdin);
 
-	//Genering key
+	//Generating a key
 
 	for (int i = 0, j = 0, count = 0, length = strlen(PlainText); i < length; i++)
 	{
