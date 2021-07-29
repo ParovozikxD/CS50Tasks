@@ -42,36 +42,48 @@ int main(int argc, char* argv[])
 
 	//Genering key
 
-	for (int i = 0, j = 0, length = strlen(PlainText); i < length; i++ , j++)
+	for (int i = 0, j = 0, count = 0, length = strlen(PlainText); i < length; i++)
 	{
+		//Retry if key < Plaintext
+		
 		if (isalpha(PlainText[i]))
 		{
+			
 			//Retry if key < Plaintext
 			if (strlen(argv[1]) == j)
 			{
 				j = 0;
-				key[i] = (int)argv[1][j];
+				//Converting to uppercase and storing int a key
+				key[count] = ((int)toupper(argv[1][j]))-65;
+				j++;
+				count++;
 			}
+
 			else
-			{
-				key[i] = (int)argv[1][j];
+			{	
+				//Converting to uppercase and storing int a key
+				key[count] = ((int)toupper(argv[1][j]))-65;
+				j++;
+				count++;
 			}
-		}
+		}	
 	}
 
 
-	for (int i = 0, length = strlen(PlainText); i < length; i++)
+	for (int i = 0,j = 0, length = strlen(PlainText); i < length; i++)
 	{
 		//For uppcase
 		if (isupper(PlainText[i]))
 		{
-			CipherText[i] = ((int)PlainText[i] - 65 + key[i]) % AplhabetSize + 65;
+			CipherText[i] = ((int)PlainText[i] - 65 + key[j]) % AplhabetSize + 65;
+			j++;
 		}
 		
 		//For downcase
 		else if (islower(PlainText[i]))
 		{
-			CipherText[i] = ((int)PlainText[i] - 97 + key[i]) % AplhabetSize + 97;
+			CipherText[i] = ((int)PlainText[i] - 97 + key[j]) % AplhabetSize + 97;
+			j++;
 		}
 
 		//For other symbols
