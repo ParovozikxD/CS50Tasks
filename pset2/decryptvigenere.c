@@ -1,7 +1,7 @@
-/*Task 6
-	Realize the vigenere
-	Input data - key (word), plaintext
-	Output data - ciphertext 
+/*Task 6.1
+	Realize the Decryption of Vigenere cipher
+	Input data - key (word), ciphertext
+	Output data - plaintext 
 
 */
 
@@ -39,16 +39,16 @@ int main(int argc, char* argv[])
 	char CipherText[Arrsize];
 	int key[Arrsize];
 
-	printf("Input your plaintext: ");
-	fgets(PlainText, Arrsize, stdin);
+	printf("Input your ciphertext: ");
+	fgets(CipherText, Arrsize, stdin);
 
 	//Generating a key
 
-	for (int i = 0, j = 0, count = 0, length = strlen(PlainText); i < length; i++)
+	for (int i = 0, j = 0, count = 0, length = strlen(CipherText); i < length; i++)
 	{
 		//Retry if key < Plaintext
 		
-		if (isalpha(PlainText[i]))
+		if (isalpha(CipherText[i]))
 		{
 			
 			//Retry if key < Plaintext
@@ -72,30 +72,44 @@ int main(int argc, char* argv[])
 	}
 
 
-	for (int i = 0,j = 0, length = strlen(PlainText); i < length; i++)
+	for (int i = 0,j = 0, length = strlen(CipherText); i < length; i++)
 	{
 		//For uppcase
-		if (isupper(PlainText[i]))
+		if (isupper(CipherText[i]))
 		{
-			CipherText[i] = ((int)PlainText[i] - 65 - key[j]) % AplhabetSize + 65;
-			j++;
+			if ((int)CipherText[i] - (key[j]+65) < 0)
+			{
+				PlainText[i] = ((int)CipherText[i] + AplhabetSize - 65 - key[j]) % AplhabetSize + 65;
+			}
+			else
+			{
+				PlainText[i] = ((int)CipherText[i] - 65 - key[j]) % AplhabetSize + 65;
+			}
+				j++;
 		}
 		
 		//For downcase
-		else if (islower(PlainText[i]))
+		else if (islower(CipherText[i]))
 		{
-			CipherText[i] = ((int)PlainText[i] - 97 - key[j]) % AplhabetSize + 97;
-			j++;
+			if ((int)CipherText[i] - (key[j]+97) < 0)
+			{
+				PlainText[i] = ((int)CipherText[i] + AplhabetSize - 97 - key[j]) % AplhabetSize + 97;
+			}
+			else
+			{
+				PlainText[i] = ((int)CipherText[i] - 97 - key[j]) % AplhabetSize + 97;
+			}
+				j++;
 		}
 
 		//For other symbols
 		else 
 		{
-			CipherText[i] = PlainText[i];
+			PlainText[i] = CipherText[i];
 		}
 	}
 
 	printf("Encryption result:\n");
-	puts(CipherText);
+	puts(PlainText);
 
 }
