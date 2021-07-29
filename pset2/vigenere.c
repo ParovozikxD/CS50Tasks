@@ -77,14 +77,14 @@ int main(int argc, char* argv[])
 		//For uppcase
 		if (isupper(PlainText[i]))
 		{
-			CipherText[i] = ((int)PlainText[i] - 65 - key[j]) % AplhabetSize + 65;
+			CipherText[i] = ((int)PlainText[i] - 65 + key[j]) % AplhabetSize + 65;
 			j++;
 		}
 		
 		//For downcase
 		else if (islower(PlainText[i]))
 		{
-			CipherText[i] = ((int)PlainText[i] - 97 - key[j]) % AplhabetSize + 97;
+			CipherText[i] = ((int)PlainText[i] - 97 + key[j]) % AplhabetSize + 97;
 			j++;
 		}
 
