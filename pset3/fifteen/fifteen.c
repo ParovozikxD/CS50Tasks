@@ -17,7 +17,7 @@
  
 #define _XOPEN_SOURCE 500
 
-#include <cs50.h>
+#include "cs50.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -98,13 +98,13 @@ int main(int argc, string argv[])
         // check for win
         if (won())
         {
-            printf("ftw!\n");
+            printf("You win!\n");
             break;
         }
 
         // prompt for move
         printf("Tile to move: ");
-        int tile = GetInt();
+        int tile = get_int("");
         
         // quit if user inputs 0 (for testing)
         if (tile == 0)
@@ -159,7 +159,32 @@ void greet(void)
  */
 void init(void)
 {
-    // TODO
+    int numbers = (d*d);
+
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {
+            //Just fill it up to the last line
+            if (i != d - 1)
+                board[i][j] = --numbers;          
+            
+            //For last line 
+            else          
+                board[d-1][j-1] = numbers--;                          
+        }
+    }
+
+    //If the dimension is even
+    if (d % 2 == 0)
+    {
+        int temp;
+        temp = board[d-1][d-2];
+        board[d-1][d-2] = board[d-1][d-3];
+        board[d-1][d-3] = temp;
+    }
+    //init empty cell                 _ -- 95 on ASCII
+    board[d-1][d-1] = '_';   
 }
 
 /**
@@ -167,7 +192,21 @@ void init(void)
  */
 void draw(void)
 {
-    // TODO
+     for (int i = 0; i < d; i++)
+        {
+            for (int j = 0; j < d; j++)
+            {
+                if (board[i][j] > 9 && board[i][j] != '_')      
+                    printf("| %i |", board[i][j]);
+                
+                else if (board[i][j] == '_')
+                    printf("| _  |");
+               
+                else if (board[i][j] < 10)
+                    printf("| %i  |", board[i][j]);
+            }
+            printf("\n");
+        }
 }
 
 /**
@@ -176,7 +215,39 @@ void draw(void)
  */
 bool move(int tile)
 {
-    // TODO
+    int position_i;
+    int position_j;
+
+    for (int i = 0; i < d; i++)
+    {
+        for (int j = 0; j < d; j++)
+        {   
+            //remember '_' position 
+            if('_' == board[i][j])
+            {
+               position_i = i;
+               position_j = j; 
+            }
+        }
+    }
+
+    for (int i = 0; i < d; i++)
+    {
+        
+        for (int j = 0; j < d; j++)
+        {   
+            //Swapping places '_' and tile by Game rules
+            if(tile == board[i][j] && (('_' == board[i][j+1]) || ('_' == board[i][j-1]) || ('_' == board[i+1][j]) || ('_' == board[i-1][j])) )
+            {
+                int temp;
+
+                temp = board[i][j];
+                board[i][j] = board[position_i][position_j];
+                board[position_i][position_j] = temp;
+                return true;
+            }  
+        }
+    }
     return false;
 }
 
@@ -186,6 +257,42 @@ bool move(int tile)
  */
 bool won(void)
 {
-    // TODO
-    return false;
+    int j = 0, k = 0;
+
+    int j1 = 0, k1 = 1;
+
+    for (int i = 0; i < d*d-1; i++)
+    {   
+        if (board[j][k] > board[j1][k1])
+        {
+            return false;
+        } 
+
+        else
+        {
+            //Move through two-dimensional array
+            if (k == d - 1)
+            {
+                k = 0;
+                j++;
+            }  
+
+            else
+            {
+                k++;               
+            }
+
+            if (k1 == d - 1)
+            {
+                k1 = 0;
+                j1++;
+            }
+
+            else
+            {
+                k1++;
+            } 
+        }
+    }
+    return true;
 }

@@ -5,8 +5,8 @@
 # Problem Set 3
 #
 
-fifteen: fifteen.c
-	clang -ggdb3 -O0 -std=c11 -Wall -Werror -o fifteen fifteen.c -lcs50 -lm
+fifteen: fifteen.c cs50.h cs50.c
+	clang -o fifteen fifteen.c cs50.c
 
 clean:
 	rm -f *.o a.out core fifteen log.txt
