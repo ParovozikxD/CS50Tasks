@@ -14,9 +14,34 @@
 /**
  * Returns true if value is in array of n values, else false.
  */
-bool search(int value, int values[], int n)
+bool search(int value, int values[], int left, int right)
 {
-    bool checker = false;
+    //Second Vesion of Search with recurcion
+
+    
+    int middle = (left+right)/2;
+
+    if (left > right)
+        return false;
+
+    else
+    {
+        if (value < values[middle])
+            return search(value, values, left, middle - 1);
+    
+        else if (value > values[middle])
+            return search(value, values, middle + 1, right);
+    
+        else if (value == values[middle])
+            return true;
+        
+        else
+            return false;
+    }
+
+   /* First Version of search with cicle
+
+   bool checker = false;
     int left = 0;
     int right = n-1;
 
@@ -42,6 +67,8 @@ bool search(int value, int values[], int n)
     }
 
     return false;
+
+    */   
 }
 
 /**
