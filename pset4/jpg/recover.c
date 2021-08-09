@@ -30,10 +30,10 @@ int main(int argc, char* argv[])
     }
 
     char JpegName[8];
-    int JpegNameCount = 0;
+    int JpegNameCount = 1;
     unsigned char data[SIZEOFJPEGBLOCK];
     
-    FILE *jpeg;
+    FILE *jpeg = NULL;
 
 
     while(fread(&data,SIZEOFJPEGBLOCK,1,card) == 1) 
@@ -48,8 +48,7 @@ int main(int argc, char* argv[])
             fwrite(&data,SIZEOFJPEGBLOCK,1, jpeg);
             fclose(jpeg);
         }
-          
-         
+               
     }
 
     fclose(card);
