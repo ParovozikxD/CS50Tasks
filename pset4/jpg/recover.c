@@ -29,30 +29,35 @@ int main(int argc, char* argv[])
         return 2;
     }
 
-    char JpegName[8];
-    int JpegNameCount = 1;
-    unsigned char data[SIZEOFJPEGBLOCK];
-    
-    FILE *jpeg = NULL;
+    unsigned char jpeg[SIZEOFJPEGBLOCK];
+    int count = 1;
+    char jpegname[12];
+    FILE *jpegfile = NULL;
 
 
-    while(fread(&data,SIZEOFJPEGBLOCK,1,card) == 1) 
+    while(fread(jpeg, SIZEOFJPEGBLOCK, 1, card))
     {
-
-        if (data[0] == 0xff && data[1] == 0xd8 && data[2] == 0xff)
+        if (jpeg[0] == 0xff && jpeg[1] == 0xd8 && jpeg[2] == 0xff)
         {
-            sprintf(JpegName,"Jpeg_%i",JpegNameCount++);
-          
-            jpeg = fopen(JpegName, "w");
+            if (jpegfile)
+            {
+                fclose(jpegfile);
+            }
 
-            fwrite(&data,SIZEOFJPEGBLOCK,1, jpeg);
-            fclose(jpeg);
+            sprintf(jpegname,"Jpeg%d.jpg",count++);
+
+            jpegfile = fopen(jpegname, "w");
+           
         }
-               
-    }
 
+        if (jpegfile)
+        {
+           fwrite(jpeg, SIZEOFJPEGBLOCK, 1, jpegfile);
+        } 
+
+   }
+    fclose(jpegfile);
     fclose(card);
-    
-    return 0;
 
+    return 0;
 }
